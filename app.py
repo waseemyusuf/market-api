@@ -59,5 +59,6 @@ def purchase(product_id):
         ), 422
 
     # Perform purchase
-    product.update(inventory_count -= 1, synchronize_session=False)
+    product.inventory_count -= 1
+    db.session.commit()
     return jsonify({'success': 'item was purchased'}), 200
