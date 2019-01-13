@@ -1,6 +1,6 @@
 import os
-from models import *
 from flask import Flask, jsonify, request
+from models import *
 
 # Configure database
 app = Flask(__name__)
@@ -52,12 +52,4 @@ def purchase(product_id):
     if product is None:
         return jsonify({'error': 'Invalid product id'}), 422
 
-    # Check if product is available
-    if product.inventory_count == 0:
-        return jsonify(
-            {'error': 'No inventory, cannot purchase.'}
-        ), 422
-
-    # Perform purchase
-    product.inventory_count -= 1
-    return jsonify({'success': 'item was purchased'}), 200
+    return product.purchase()
