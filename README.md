@@ -2,11 +2,9 @@
 
 A web server API for the backend of a barebones online marketplace.
 
-## Endpoints
+## Endpoints for:
 
-All responses are in `application/JSON`.
-
-1. **Fetch all products**
+1. **Fetching all products**
     ```
     GET /api/products
     ```
@@ -31,7 +29,7 @@ All responses are in `application/JSON`.
       ]
     }
     ```
-2. **Fetch one product at a time**
+2. **Fetching one product at a time**
   
    A particular product can be fetched by its unique id.
    ```
@@ -50,11 +48,11 @@ All responses are in `application/JSON`.
      "inventory_count": 100
    }
    ```
-3. **Purchase a product**
+3. **Purchasing a product**
    ```
    POST /api/purchase/<product_id>
    ```
-   Error and success messages repectively:
+   Error and success responses repectively:
    ```
    { "error": "No inventory, cannot purchase."}
    { "success": "item was purchased" }
