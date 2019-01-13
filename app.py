@@ -34,11 +34,11 @@ def fetch_one(product_id):
     # Check if product is valid
     product = Product.query.get(product_id)
     if product is None:
-        return jsonify({'error': 'Invalid product'}), 422
+        return jsonify({'error': 'Invalid product id'}), 422
 
     return jsonify({
-        'inventory_count': product.inventory_count,
-        'price': product.price,
         'title': product.title,
+        'price': product.price,
+        'inventory_count': product.inventory_count,
         'id': product.id
     })
