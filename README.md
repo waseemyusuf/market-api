@@ -33,21 +33,29 @@ All responses are in `application/JSON`.
     ```
 2. **Fetch one product at a time**
   
-  A particular product can be fetched by its unique id.
-  ```
-  GET /api/products/<product_id>
-  ```
-  If no product with specified id is found in the database, a 422 error will be thrown and the JSON response will be:
-  ```
-  { "error": "Invalid product id" }
-  ```
-  
-  Example successful response:
-  ```
-  {
-    "id": 5,
-    "title": "Banana",
-    "price": 3.75,
-    "inventory_count": 100
-  }
-  ```
+   A particular product can be fetched by its unique id.
+   ```
+   GET /api/products/<product_id>
+   ```
+   If no product with specified id is found in the database, a 422 error will be thrown and the JSON response will be:
+   ```
+   { "error": "Invalid product id" }
+   ``` 
+   Example successful response:
+   ```
+   {
+     "id": 5,
+     "title": "Banana",
+     "price": 3.75,
+     "inventory_count": 100
+   }
+   ```
+3. **Purchase a product**
+   ```
+   POST /api/purchase/<product_id>
+   ```
+   Error and success messages repectively:
+   ```
+   { "error": "No inventory, cannot purchase."}
+   { "success": "item was purchased" }
+   ```
