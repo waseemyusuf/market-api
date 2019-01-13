@@ -18,14 +18,14 @@ def fetch_all():
     else:
         products = Product.query.all()
 
-    return jsonify([
+    return jsonify({[
         {
             'inventory_count': product.inventory_count,
             'price': product.price,
             'title': product.title,
             'id': product.id
         } for product in products
-    ])
+    ]})
 
 @app.route('/api/products/<int:product_id>', methods=['GET'])
 def fetch_one(product_id):
