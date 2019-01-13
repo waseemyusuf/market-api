@@ -9,7 +9,3 @@ class Product(db.Model):
     title = db.Column(db.String, nullable=False)
     price = db.Column(db.Float, nullable=False)
     inventory_count = db.Column(db.Integer, nullable=False)
-
-    def purchase(self, quantity=1):
-        if self.inventory_count >= quantity:
-            self.inventory_count -= quantity
