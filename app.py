@@ -30,13 +30,15 @@ def fetch_all():
 
 @app.route('/api/products/<int:product_id>', methods=['GET'])
 def fetch_one(product_id):
+
     # Check if product is valid
     product = Product.query.get(product_id)
     if product is None:
         return jsonify({'error': 'Invalid product'}), 422
 
-    # Get the price
-    price = product.price
     return jsonify({
-        'price': price
+        'inventory_count': product.inventory_count,
+        'price': product.price,
+        'title': product.title,
+        'id': product.id
     })
