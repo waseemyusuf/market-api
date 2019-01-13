@@ -11,10 +11,5 @@ class Product(db.Model):
     inventory_count = db.Column(db.Integer, nullable=False)
 
     def purchase(self, quantity=1):
-        if self.inventory_count < quantity:
-            return jsonify(
-                {'error': 'No inventory, cannot purchase.'}
-            ), 422
-
-        self.inventory_count -= quantity
-        return jsonify({'success': 'item was purchased'}), 200
+        if self.inventory_count >= quantity:
+            self.inventory_count -= quantity
