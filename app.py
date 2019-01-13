@@ -12,7 +12,7 @@ db.init_app(app)
 @app.route('/api/products', methods=['GET'])
 def fetch_all():
 
-    isAvailable = request.args.get('available')
+    isAvailable = bool(request.args.get('available'))
     if isAvailable == True:
         products = Product.query.filter(Product.inventory_count > 0).all()
     else:
@@ -26,6 +26,7 @@ def fetch_all():
             'id': product.id
         } for product in products]
     })
+
 
 @app.route('/api/products/<int:product_id>', methods=['GET'])
 def fetch_one(product_id):
