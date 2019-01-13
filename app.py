@@ -13,16 +13,16 @@ db.init_app(app)
 def fetch_all():
 
     isAvailable = request.args.get('available')
-    if isAvailable:
+    if isAvailable == True:
         products = Product.query.filter(Product.inventory_count > 0).all()
     else:
         products = Product.query.all()
 
     return jsonify({
         'products':[{
-            'title': product.title,
-            'price': product.price,
             'inventory_count': product.inventory_count,
+            'price': product.price,
+            'title': product.title,
             'id': product.id
         } for product in products]
     })
