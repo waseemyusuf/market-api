@@ -11,9 +11,9 @@ db.init_app(app)
 
 @app.route('/api/products', methods=['GET'])
 def fetch_all():
-
     isAvailable = bool(request.args.get('available'))
-    if isAvailable == True:
+    print(isAvailable)
+    if isAvailable:
         products = Product.query.filter(Product.inventory_count > 0).all()
     else:
         products = Product.query.all()
