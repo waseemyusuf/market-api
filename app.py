@@ -42,3 +42,22 @@ def fetch_one(product_id):
         'inventory_count': product.inventory_count,
         'id': product.id
     })
+
+@app.route('/api/purchase/<int:product_id>', methods=['POST'])
+def purchase(product_id):
+
+    product = Product.query.get(product_id)
+
+    # Check if product is valid
+    if product is None:
+        return jsonify({'error': 'Invalid product id'}), 422
+
+    # Check if product is available
+    if product.inventory_count == 0:
+        return jsonify(
+            {'error': 'No inventory, cannot purchase.'}
+        ), 422
+
+    # Perform purchase
+    product.inventory_count -= 1
+    return jsonify({'success': 'item was purchased'}), 200
