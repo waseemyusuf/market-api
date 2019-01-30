@@ -8,7 +8,7 @@ A web server API for the backend of a barebones online marketplace.
     ```
     GET /api/products
     ```
-    An optional parameter, `available`, can be set to `true` (case-sensitive) to return products with inventory_count greater than 0 only.
+    An optional parameter, `available`, can be set to `true` to return products with inventory_count greater than 0 only.
     ```
     GET /api/products?available=true
     ```
@@ -57,3 +57,7 @@ A web server API for the backend of a barebones online marketplace.
    { "error": "No inventory, cannot purchase."}
    { "success": "item was purchased" }
    ```
+   
+# (Back end installation)
+   
+Create a PostgreSQL database and then save its database URI to an environment variable named `DATABASE_URI`, then run `create.py` to create a table in the database. Products have to be added to the table manually. The API can only perform above mentioned tasks.
